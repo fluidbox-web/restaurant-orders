@@ -11,61 +11,61 @@
       "descripcion": "Pequeños manjares para abrir boca y compartir en mesa.",
       "imagen": "https://images.unsplash.com/photo-1541529086526-db283c563270?w=900&q=80",
       "items": [
-        { "nombre": "Plátano Frito", "precio": 70 },
-        { "nombre": "Papas a la Francesa", "precio": 70 },
-        { "nombre": "Cebollitas Cambray", "precio": 70 },
-        { "nombre": "Nopales Asados", "precio": 50 },
-        { "nombre": "Plato de Fruta", "precio": 70 },
-        { "nombre": "Boul de Frutas", "precio": 120 },
-        { "nombre": "Guacamole", "precio": 130 },
-        { "nombre": "Chistorra", "precio": 150 },
-        { "nombre": "Pan Frances (French toast)", "precio": 120 },
-        { "nombre": "Pan", "precio": 25, "descripcion": "*Concha rellena, *Queque relleno" }
+        { "nombre": "Plátano Frito", "precio": 70, "descripcion": "Plátano maduro frito, crujiente por fuera y suave por dentro." },
+        { "nombre": "Papas a la Francesa", "precio": 70, "descripcion": "Papas doradas y crujientes, perfectas para compartir." },
+        { "nombre": "Cebollitas Cambray", "precio": 70, "descripcion": "Cebollitas asadas con un toque de sal y limón." },
+        { "nombre": "Nopales Asados", "precio": 50, "descripcion": "Nopales tiernos asados al carbón con especias." },
+        { "nombre": "Plato de Fruta", "precio": 70, "descripcion": "Selección fresca de frutas de temporada." },
+        { "nombre": "Boul de Frutas", "precio": 120, "descripcion": "Tazón generoso de frutas frescas y naturales." },
+        { "nombre": "Guacamole", "precio": 130, "descripcion": "Guacamole fresco preparado al momento con aguacate cremoso." },
+        { "nombre": "Chistorra", "precio": 150, "descripcion": "Chistorra jugosa sazonada a la parrilla." },
+        { "nombre": "Pan Frances (French toast)", "precio": 120, "descripcion": "Pan brioche dorado bañado en miel y canela." },
+        { "nombre": "Pan", "precio": 25, "descripcion": "Pan artesanal recién horneado: concha rellena o queque relleno." }
       ]
     },
     "Waffles": {
       "descripcion": "Crujientes por fuera, suaves por dentro. Endúlzate el día.",
       "imagen": "https://images.unsplash.com/photo-1506084868230-bb9d95c24759?w=900&q=80",
       "items": [
-        { "nombre": "Nutella y Philadelphia", "precio": 110 },
-        { "nombre": "Frutas, Plátano, Granola y Chantilli", "precio": 110 },
-        { "nombre": "Chocolate, Lechera y Chantilli", "precio": 100 },
-        { "nombre": "Jamón, Queso y Tocino", "precio": 110 },
-        { "nombre": "Naturales", "precio": 85 }
+        { "nombre": "Nutella y Philadelphia", "precio": 110, "descripcion": "Waffle crujiente con Nutella y queso Philadelphia." },
+        { "nombre": "Frutas, Plátano, Granola y Chantilli", "precio": 110, "descripcion": "Waffle loaded con frutas, granola y crema chantilly." },
+        { "nombre": "Chocolate, Lechera y Chantilli", "precio": 100, "descripcion": "Waffle con chocolate, lechera y una nube de chantilly." },
+        { "nombre": "Jamón, Queso y Tocino", "precio": 110, "descripcion": "Waffle salado con jamón, queso derretido y tocino crujiente." },
+        { "nombre": "Naturales", "precio": 85, "descripcion": "Waffle clásico con mantequilla y miel de maple." }
       ]
     },
     "Sandwich": {
       "descripcion": "Acompañado de papas a la francesa con pan Brioche.",
       "imagen": "https://images.unsplash.com/photo-1521390188846-e2a3a97453a0?w=900&q=80",
       "items": [
-        { "nombre": "Pollo con queso de hebra", "precio": 110 },
-        { "nombre": "Jamón de Pavo", "precio": 110 },
-        { "nombre": "Sandwich Mixto", "precio": 120 },
-        { "nombre": "Club Sandwich", "precio": 140 },
-        { "nombre": "Croque Madame", "precio": 140 }
+        { "nombre": "Pollo con queso de hebra", "precio": 110, "descripcion": "Sandwich de pollo jugoso con queso de hebra derretido." },
+        { "nombre": "Jamón de Pavo", "precio": 110, "descripcion": "Sandwich de jamón de pavo con pan brioche suave." },
+        { "nombre": "Sandwich Mixto", "precio": 120, "descripcion": "Combinación perfecta de jamón y queso en pan brioche." },
+        { "nombre": "Club Sandwich", "precio": 140, "descripcion": "Triple capa de jamón, pollo, queso y verduras frescas." },
+        { "nombre": "Croque Madame", "precio": 140, "descripcion": "Sandwich francés gratinado con huevo estrellado encima." }
       ]
     },
     "Hot Cakes": {
       "descripcion": "3 piezas esponjosas servidas con tu topping favorito.",
       "imagen": "https://images.unsplash.com/photo-1484723091739-30a097e8f929?w=900&q=80",
       "items": [
-        { "nombre": "Naturales", "precio": 75 },
-        { "nombre": "Jamón, Queso y Tocino", "precio": 110 },
-        { "nombre": "Nutella", "precio": 110 },
-        { "nombre": "Frutas", "precio": 110 },
-        { "nombre": "Dulce de Plátano", "precio": 110 }
+        { "nombre": "Naturales", "precio": 75, "descripcion": "Hot cakes esponjosos con mantequilla y miel." },
+        { "nombre": "Jamón, Queso y Tocino", "precio": 110, "descripcion": "Hot cakes salados con jamón, queso y tocino crujiente." },
+        { "nombre": "Nutella", "precio": 110, "descripcion": "Hot cakes bañados en Nutella y azúcar glass." },
+        { "nombre": "Frutas", "precio": 110, "descripcion": "Hot cakes con frutas frescas de temporada." },
+        { "nombre": "Dulce de Plátano", "precio": 110, "descripcion": "Hot cakes con plátano caramelizado y canela." }
       ]
     },
     "Chilaquiles": {
       "descripcion": "Totopos con salsa de su elección, aguacate, queso fresco, tiras de cebolla y media crema.",
       "imagen": "https://images.unsplash.com/photo-1565299585323-38d6b0865b47?w=900&q=80",
       "items": [
-        { "nombre": "Huevo", "precio": 110 },
-        { "nombre": "Pollo", "precio": 130 },
-        { "nombre": "Arrachera", "precio": 160 },
-        { "nombre": "Cecina", "precio": 155 },
-        { "nombre": "Rajas Poblanas y Pollo", "precio": 155 },
-        { "nombre": "Huevo Adicional", "precio": 20 }
+        { "nombre": "Huevo", "precio": 110, "descripcion": "Chilaquiles bañados en salsa con huevo estrellado." },
+        { "nombre": "Pollo", "precio": 130, "descripcion": "Chilaquiles con pollo deshebrado y crema." },
+        { "nombre": "Arrachera", "precio": 160, "descripcion": "Chilaquiles con arrachera jugosa a la parrilla." },
+        { "nombre": "Cecina", "precio": 155, "descripcion": "Chilaquiles con cecina de res y queso fresco." },
+        { "nombre": "Rajas Poblanas y Pollo", "precio": 155, "descripcion": "Chilaquiles con rajas poblanas y pollo." },
+        { "nombre": "Huevo Adicional", "precio": 20, "descripcion": "Huevo estrellado extra para complementar tu plato." }
       ]
     }
   }

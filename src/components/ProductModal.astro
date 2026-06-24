@@ -1,0 +1,142 @@
+---
+---
+
+<div id="product-modal" class="fixed inset-0 z-[60] pointer-events-none" aria-hidden="true">
+  <div id="product-backdrop" class="absolute inset-0 bg-text/40 backdrop-blur-sm opacity-0 transition-opacity duration-300"></div>
+
+  <div
+    id="product-panel"
+    class="absolute left-0 right-0 bottom-0 md:top-1/2 md:left-1/2 md:right-auto md:bottom-auto md:-translate-x-1/2 md:-translate-y-1/2 md:w-full md:max-w-lg bg-card rounded-t-3xl md:rounded-3xl shadow-2xl flex flex-col translate-y-full md:translate-y-[-40%] md:opacity-0 transition-transform duration-300 ease-[cubic-bezier(0.32,0.72,0,1)] md:transition-all max-h-[85vh] md:max-h-[90vh]"
+  >
+    <button
+      id="product-close"
+      class="absolute top-3 right-3 z-10 w-9 h-9 rounded-full bg-white/90 text-text hover:bg-white transition-colors cursor-pointer flex items-center justify-center shadow-sm"
+      aria-label="Cerrar"
+    >
+      <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18"/><path d="M6 6l12 12"/></svg>
+    </button>
+
+    <div class="relative h-56 md:h-64 shrink-0 overflow-hidden rounded-t-3xl md:rounded-t-3xl">
+      <img id="pm-image" src="" alt="" class="w-full h-full object-cover" />
+      <div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
+      <span id="pm-price-badge" class="absolute bottom-3 left-4 bg-white/95 text-text font-bold text-lg px-3 py-1 rounded-full shadow-sm"></span>
+    </div>
+
+    <div class="p-5 md:p-6 flex-1 overflow-y-auto">
+      <span id="pm-category" class="text-brand text-xs font-bold uppercase tracking-wider"></span>
+      <h2 id="pm-title" class="font-display text-2xl md:text-3xl font-bold text-text mt-1 mb-3"></h2>
+      <p id="pm-description" class="text-text-muted leading-relaxed mb-6"></p>
+
+      <div id="pm-controls" class="flex items-center gap-3">
+        <button
+          id="pm-add"
+          class="flex-1 bg-brand text-white py-3.5 rounded-xl font-bold text-base hover:bg-brand-dark active:scale-[0.98] transition-all shadow-lg shadow-brand/20 flex items-center justify-center gap-2"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg>
+          Agregar al pedido
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  import { cartItems, addToCart, incrementQuantity, decrementQuantity } from '../store/cart';
+  import gsap from 'gsap';
+
+  const modal = document.getElementById('product-modal');
+  const backdrop = document.getElementById('product-backdrop');
+  const panel = document.getElementById('product-panel');
+  const closeBtn = document.getElementById('product-close');
+
+  const image = document.getElementById('pm-image');
+  const priceBadge = document.getElementById('pm-price-badge');
+  const category = document.getElementById('pm-category');
+  const title = document.getElementById('pm-title');
+  const description = document.getElementById('pm-description');
+  const controls = document.getElementById('pm-controls');
+
+  let currentProduct = null;
+  let isOpen = false;
+
+  function renderControls() {
+    if (!currentProduct) return;
+    const item = cartItems.get()[currentProduct.nombre];
+
+    if (item && item.cantidad > 0) {
+      controls.innerHTML = `
+        <div class="flex items-center gap-2 bg-border/40 rounded-xl p-1.5 w-full">
+          <button id="pm-dec" class="w-12 h-12 rounded-lg bg-white text-text font-bold shadow-sm hover:bg-brand/10 active:scale-95 transition-all">−</button>
+          <span id="pm-qty" class="flex-1 text-center font-bold text-text text-lg">${item.cantidad}</span>
+          <button id="pm-inc" class="w-12 h-12 rounded-lg bg-brand text-white font-bold shadow-sm hover:bg-brand-dark active:scale-95 transition-all">+</button>
+        </div>
+      `;
+      controls.querySelector('#pm-dec').addEventListener('click', () => decrementQuantity(currentProduct.nombre));
+      controls.querySelector('#pm-inc').addEventListener('click', () => incrementQuantity(currentProduct.nombre));
+    } else {
+      controls.innerHTML = `
+        <button id="pm-add" class="flex-1 bg-brand text-white py-3.5 rounded-xl font-bold text-base hover:bg-brand-dark active:scale-[0.98] transition-all shadow-lg shadow-brand/20 flex items-center justify-center gap-2">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg>
+          Agregar al pedido
+        </button>
+      `;
+      controls.querySelector('#pm-add').addEventListener('click', () => addToCart(currentProduct));
+    }
+  }
+
+  function openModal(product) {
+    currentProduct = product;
+    image.src = product.imagen;
+    image.alt = product.nombre;
+    priceBadge.textContent = `$${product.precio}`;
+    category.textContent = product.categoria;
+    title.textContent = product.nombre;
+    description.textContent = product.descripcion;
+
+    renderControls();
+
+    isOpen = true;
+    modal.classList.remove('pointer-events-none');
+    modal.setAttribute('aria-hidden', 'false');
+    backdrop.classList.remove('opacity-0');
+    backdrop.classList.add('opacity-100');
+    panel.classList.remove('translate-y-full', 'md:translate-x-full', 'md:translate-y-[-40%]', 'md:opacity-0');
+    panel.classList.add('translate-y-0', 'md:translate-y-[-50%]', 'md:opacity-100');
+    document.body.style.overflow = 'hidden';
+
+    gsap.fromTo(
+      panel,
+      { scale: 0.95, opacity: 0 },
+      { scale: 1, opacity: 1, duration: 0.3, ease: 'back.out(1.5)' }
+    );
+  }
+
+  function closeModal() {
+    isOpen = false;
+    backdrop.classList.remove('opacity-100');
+    backdrop.classList.add('opacity-0');
+    panel.classList.add('translate-y-full', 'md:translate-x-full', 'md:translate-y-[-40%]', 'md:opacity-0');
+    panel.classList.remove('translate-y-0', 'md:translate-y-[-50%]', 'md:opacity-100');
+    document.body.style.overflow = '';
+    setTimeout(() => {
+      modal.classList.add('pointer-events-none');
+      modal.setAttribute('aria-hidden', 'true');
+      currentProduct = null;
+    }, 300);
+  }
+
+  closeBtn.addEventListener('click', closeModal);
+  backdrop.addEventListener('click', closeModal);
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && isOpen) closeModal();
+  });
+
+  window.addEventListener('open-product-modal', (e) => {
+    openModal(e.detail);
+  });
+
+  cartItems.subscribe(() => {
+    if (isOpen && currentProduct) renderControls();
+  });
+</script>

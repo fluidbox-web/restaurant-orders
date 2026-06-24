@@ -1,5 +1,6 @@
 ---
 import ProductCard from '../components/ProductCard.astro';
+import ProductModal from '../components/ProductModal.astro';
 import FloatingCart from '../components/FloatingCart.astro';
 import menuData from '../data/menu.json';
 import '../styles/global.css';
@@ -86,7 +87,7 @@ const categorias = Object.entries(menu);
 
     <!-- Category Tabs -->
     <div
-      class="sticky top-0 z-30 bg-cream/95 backdrop-blur-md border-b border-border transition-shadow duration-300"
+      class="sticky top-14 z-30 bg-cream/95 backdrop-blur-md border-b border-border transition-shadow duration-300"
       id="tabs-bar"
     >
       <nav
@@ -156,6 +157,7 @@ const categorias = Object.entries(menu);
     </footer>
 
     <FloatingCart />
+    <ProductModal />
 
     <script>
       import gsap from 'gsap';
