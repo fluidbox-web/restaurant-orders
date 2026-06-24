@@ -1,0 +1,40 @@
+@import "tailwindcss";
+
+@theme {
+  --font-display: 'Playfair Display', Georgia, serif;
+  --font-body: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+
+  --color-cream: #fff9f2;
+  --color-card: #ffffff;
+  --color-brand: #f49834;
+  --color-brand-dark: #d67d1f;
+  --color-text: #442413;
+  --color-text-muted: #8b6d5c;
+  --color-border: #f4e6d8;
+  --color-success: #22c55e;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-cream text-text font-body antialiased;
+    background-image: radial-gradient(#f4e6d8 1px, transparent 1px);
+    background-size: 24px 24px;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .line-clamp-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+}

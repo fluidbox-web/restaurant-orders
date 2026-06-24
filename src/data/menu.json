@@ -1,0 +1,72 @@
+{
+  "restaurante": {
+    "nombre": "Los Comales",
+    "slogan": "Sabor casero, tradición en cada plato.",
+    "telefono": "529841918439",
+    "hero": "https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=1400&q=80",
+    "direccion": "Tu dirección aquí"
+  },
+  "menu": {
+    "Entradas": {
+      "descripcion": "Pequeños manjares para abrir boca y compartir en mesa.",
+      "imagen": "https://images.unsplash.com/photo-1541529086526-db283c563270?w=900&q=80",
+      "items": [
+        { "nombre": "Plátano Frito", "precio": 70 },
+        { "nombre": "Papas a la Francesa", "precio": 70 },
+        { "nombre": "Cebollitas Cambray", "precio": 70 },
+        { "nombre": "Nopales Asados", "precio": 50 },
+        { "nombre": "Plato de Fruta", "precio": 70 },
+        { "nombre": "Boul de Frutas", "precio": 120 },
+        { "nombre": "Guacamole", "precio": 130 },
+        { "nombre": "Chistorra", "precio": 150 },
+        { "nombre": "Pan Frances (French toast)", "precio": 120 },
+        { "nombre": "Pan", "precio": 25, "descripcion": "*Concha rellena, *Queque relleno" }
+      ]
+    },
+    "Waffles": {
+      "descripcion": "Crujientes por fuera, suaves por dentro. Endúlzate el día.",
+      "imagen": "https://images.unsplash.com/photo-1506084868230-bb9d95c24759?w=900&q=80",
+      "items": [
+        { "nombre": "Nutella y Philadelphia", "precio": 110 },
+        { "nombre": "Frutas, Plátano, Granola y Chantilli", "precio": 110 },
+        { "nombre": "Chocolate, Lechera y Chantilli", "precio": 100 },
+        { "nombre": "Jamón, Queso y Tocino", "precio": 110 },
+        { "nombre": "Naturales", "precio": 85 }
+      ]
+    },
+    "Sandwich": {
+      "descripcion": "Acompañado de papas a la francesa con pan Brioche.",
+      "imagen": "https://images.unsplash.com/photo-1521390188846-e2a3a97453a0?w=900&q=80",
+      "items": [
+        { "nombre": "Pollo con queso de hebra", "precio": 110 },
+        { "nombre": "Jamón de Pavo", "precio": 110 },
+        { "nombre": "Sandwich Mixto", "precio": 120 },
+        { "nombre": "Club Sandwich", "precio": 140 },
+        { "nombre": "Croque Madame", "precio": 140 }
+      ]
+    },
+    "Hot Cakes": {
+      "descripcion": "3 piezas esponjosas servidas con tu topping favorito.",
+      "imagen": "https://images.unsplash.com/photo-1484723091739-30a097e8f929?w=900&q=80",
+      "items": [
+        { "nombre": "Naturales", "precio": 75 },
+        { "nombre": "Jamón, Queso y Tocino", "precio": 110 },
+        { "nombre": "Nutella", "precio": 110 },
+        { "nombre": "Frutas", "precio": 110 },
+        { "nombre": "Dulce de Plátano", "precio": 110 }
+      ]
+    },
+    "Chilaquiles": {
+      "descripcion": "Totopos con salsa de su elección, aguacate, queso fresco, tiras de cebolla y media crema.",
+      "imagen": "https://images.unsplash.com/photo-1565299585323-38d6b0865b47?w=900&q=80",
+      "items": [
+        { "nombre": "Huevo", "precio": 110 },
+        { "nombre": "Pollo", "precio": 130 },
+        { "nombre": "Arrachera", "precio": 160 },
+        { "nombre": "Cecina", "precio": 155 },
+        { "nombre": "Rajas Poblanas y Pollo", "precio": 155 },
+        { "nombre": "Huevo Adicional", "precio": 20 }
+      ]
+    }
+  }
+}
