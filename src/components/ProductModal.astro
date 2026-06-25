@@ -1,40 +1,45 @@
 ---
 ---
 
-<div id="product-modal" class="fixed inset-0 z-[60] pointer-events-none" aria-hidden="true">
+<div id="product-modal" class="fixed inset-0 z-[60] hidden" aria-hidden="true">
+  <!-- Backdrop -->
   <div id="product-backdrop" class="absolute inset-0 bg-text/40 backdrop-blur-sm opacity-0 transition-opacity duration-300"></div>
 
-  <div
-    id="product-panel"
-    class="absolute left-0 right-0 bottom-0 md:top-1/2 md:left-1/2 md:right-auto md:bottom-auto md:-translate-x-1/2 md:-translate-y-1/2 md:w-full md:max-w-lg bg-card rounded-t-3xl md:rounded-3xl shadow-2xl flex flex-col translate-y-full md:translate-y-[-40%] md:opacity-0 transition-transform duration-300 ease-[cubic-bezier(0.32,0.72,0,1)] md:transition-all max-h-[85vh] md:max-h-[90vh]"
-  >
-    <button
-      id="product-close"
-      class="absolute top-3 right-3 z-10 w-9 h-9 rounded-full bg-white/90 text-text hover:bg-white transition-colors cursor-pointer flex items-center justify-center shadow-sm"
-      aria-label="Cerrar"
+  <!-- Wrapper: móvil abajo, desktop centrado -->
+  <div id="product-wrapper" class="absolute inset-0 flex items-end justify-center md:items-center pointer-events-none p-0 md:p-6">
+    <!-- Panel -->
+    <div
+      id="product-panel"
+      class="relative w-full md:w-[32rem] max-w-lg bg-card rounded-t-3xl md:rounded-3xl shadow-2xl flex flex-col max-h-[85vh] md:max-h-[90vh] pointer-events-auto transition-all duration-300 ease-[cubic-bezier(0.32,0.72,0,1)] translate-y-full md:translate-y-0 md:scale-95 md:opacity-0"
     >
-      <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18"/><path d="M6 6l12 12"/></svg>
-    </button>
+      <button
+        id="product-close"
+        class="absolute top-3 right-3 z-10 w-9 h-9 rounded-full bg-white/90 text-text hover:bg-white transition-colors cursor-pointer flex items-center justify-center shadow-sm"
+        aria-label="Cerrar"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18"/><path d="M6 6l12 12"/></svg>
+      </button>
 
-    <div class="relative h-56 md:h-64 shrink-0 overflow-hidden rounded-t-3xl md:rounded-t-3xl">
-      <img id="pm-image" src="" alt="" class="w-full h-full object-cover" />
-      <div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
-      <span id="pm-price-badge" class="absolute bottom-3 left-4 bg-white/95 text-text font-bold text-lg px-3 py-1 rounded-full shadow-sm"></span>
-    </div>
+      <div class="relative h-56 md:h-64 shrink-0 overflow-hidden rounded-t-3xl md:rounded-t-3xl">
+        <img id="pm-image" src="" alt="" class="w-full h-full object-cover" />
+        <div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
+        <span id="pm-price-badge" class="absolute bottom-3 left-4 bg-white/95 text-text font-bold text-lg px-3 py-1 rounded-full shadow-sm"></span>
+      </div>
 
-    <div class="p-5 md:p-6 flex-1 overflow-y-auto">
-      <span id="pm-category" class="text-brand text-xs font-bold uppercase tracking-wider"></span>
-      <h2 id="pm-title" class="font-display text-2xl md:text-3xl font-bold text-text mt-1 mb-3"></h2>
-      <p id="pm-description" class="text-text-muted leading-relaxed mb-6"></p>
+      <div class="p-5 md:p-6 flex-1 overflow-y-auto">
+        <span id="pm-category" class="text-brand text-xs font-bold uppercase tracking-wider"></span>
+        <h2 id="pm-title" class="font-display text-2xl md:text-3xl font-bold text-text mt-1 mb-3"></h2>
+        <p id="pm-description" class="text-text-muted leading-relaxed mb-6"></p>
 
-      <div id="pm-controls" class="flex items-center gap-3">
-        <button
-          id="pm-add"
-          class="flex-1 bg-brand text-white py-3.5 rounded-xl font-bold text-base hover:bg-brand-dark active:scale-[0.98] transition-all shadow-lg shadow-brand/20 flex items-center justify-center gap-2"
-        >
-          <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg>
-          Agregar al pedido
-        </button>
+        <div id="pm-controls" class="flex items-center gap-3">
+          <button
+            id="pm-add"
+            class="flex-1 bg-brand text-white py-3.5 rounded-xl font-bold text-base hover:bg-brand-dark active:scale-[0.98] transition-all shadow-lg shadow-brand/20 flex items-center justify-center gap-2"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg>
+            Agregar al pedido
+          </button>
+        </div>
       </div>
     </div>
   </div>
@@ -42,7 +47,6 @@
 
 <script>
   import { cartItems, addToCart, incrementQuantity, decrementQuantity } from '../store/cart';
-  import gsap from 'gsap';
 
   const modal = document.getElementById('product-modal');
   const backdrop = document.getElementById('product-backdrop');
@@ -96,31 +100,32 @@
     renderControls();
 
     isOpen = true;
-    modal.classList.remove('pointer-events-none');
+    modal.classList.remove('hidden');
     modal.setAttribute('aria-hidden', 'false');
-    backdrop.classList.remove('opacity-0');
-    backdrop.classList.add('opacity-100');
-    panel.classList.remove('translate-y-full', 'md:translate-x-full', 'md:translate-y-[-40%]', 'md:opacity-0');
-    panel.classList.add('translate-y-0', 'md:translate-y-[-50%]', 'md:opacity-100');
     document.body.style.overflow = 'hidden';
 
-    gsap.fromTo(
-      panel,
-      { scale: 0.95, opacity: 0 },
-      { scale: 1, opacity: 1, duration: 0.3, ease: 'back.out(1.5)' }
-    );
+    // Forzar reflow para que la transición se ejecute
+    void panel.offsetWidth;
+
+    backdrop.classList.remove('opacity-0');
+    backdrop.classList.add('opacity-100');
+    panel.classList.remove('translate-y-full', 'md:scale-95', 'md:opacity-0');
+    panel.classList.add('translate-y-0', 'md:scale-100', 'md:opacity-100');
   }
 
   function closeModal() {
+    if (!isOpen) return;
     isOpen = false;
+
     backdrop.classList.remove('opacity-100');
     backdrop.classList.add('opacity-0');
-    panel.classList.add('translate-y-full', 'md:translate-x-full', 'md:translate-y-[-40%]', 'md:opacity-0');
-    panel.classList.remove('translate-y-0', 'md:translate-y-[-50%]', 'md:opacity-100');
-    document.body.style.overflow = '';
+    panel.classList.remove('translate-y-0', 'md:scale-100', 'md:opacity-100');
+    panel.classList.add('translate-y-full', 'md:scale-95', 'md:opacity-0');
+
     setTimeout(() => {
-      modal.classList.add('pointer-events-none');
+      modal.classList.add('hidden');
       modal.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
       currentProduct = null;
     }, 300);
   }
