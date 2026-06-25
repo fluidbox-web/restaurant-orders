@@ -16,7 +16,7 @@
 </button>
 
 <!-- Drawer -->
-<div id="cart-modal" class="fixed inset-0 z-40 pointer-events-none">
+<div id="cart-modal" class="fixed inset-0 z-[55] pointer-events-none">
   <div id="cart-backdrop" class="absolute inset-0 bg-text/30 backdrop-blur-sm opacity-0 transition-opacity duration-300"></div>
 
   <div
@@ -61,11 +61,30 @@
         </div>
 
         <div>
-          <label for="cart-notes" class="text-text text-xs font-semibold mb-1.5 block">Notas adicionales</label>
+          <label id="cart-notes-label" for="cart-notes" class="text-text text-xs font-semibold mb-1.5 block">Notas adicionales</label>
           <textarea
             id="cart-notes"
             rows="2"
             placeholder="Sin cebolla, extra salsa..."
+            class="w-full p-3.5 rounded-xl border border-border bg-white text-text placeholder:text-text-muted/50 focus:outline-none focus:border-brand focus:ring-2 focus:ring-brand/10 transition-all text-sm resize-none"
+          ></textarea>
+        </div>
+
+        <label class="flex items-center gap-3 cursor-pointer">
+          <input
+            id="cart-delivery"
+            type="checkbox"
+            class="w-5 h-5 rounded border-border text-brand focus:ring-brand cursor-pointer"
+          />
+          <span class="text-text text-sm font-medium">Servicio a domicilio</span>
+        </label>
+
+        <div id="cart-address-wrapper" class="hidden">
+          <label for="cart-address" class="text-text text-xs font-semibold mb-1.5 block">Dirección de entrega</label>
+          <textarea
+            id="cart-address"
+            rows="2"
+            placeholder="Calle, número, colonia, referencias..."
             class="w-full p-3.5 rounded-xl border border-border bg-white text-text placeholder:text-text-muted/50 focus:outline-none focus:border-brand focus:ring-2 focus:ring-brand/10 transition-all text-sm resize-none"
           ></textarea>
         </div>
@@ -105,8 +124,21 @@
   const sendBtn = document.getElementById('cart-send');
   const nameInput = document.getElementById('cart-name');
   const notesInput = document.getElementById('cart-notes');
+  const deliveryCheckbox = document.getElementById('cart-delivery');
+  const addressWrapper = document.getElementById('cart-address-wrapper');
+  const addressInput = document.getElementById('cart-address');
 
   let isOpen = false;
+
+  deliveryCheckbox.addEventListener('change', () => {
+    if (deliveryCheckbox.checked) {
+      addressWrapper.classList.remove('hidden');
+      setTimeout(() => addressInput.focus(), 100);
+    } else {
+      addressWrapper.classList.add('hidden');
+      addressInput.value = '';
+    }
+  });
 
   function openCart() {
     isOpen = true;
@@ -232,12 +264,27 @@
       return;
     }
 
+    const esDomicilio = deliveryCheckbox.checked;
+    const direccion = addressInput.value.trim();
+    if (esDomicilio && !direccion) {
+      addressInput.classList.add('border-red-400', 'ring-2', 'ring-red-100');
+      addressInput.focus();
+      setTimeout(() => {
+        addressInput.classList.remove('border-red-400', 'ring-2', 'ring-red-100');
+      }, 2000);
+      return;
+    }
+
     const notas = notesInput.value.trim();
     const items = Object.values(cartItems.get());
     if (items.length === 0) return;
 
     let mensaje = `🛒 *Pedido Los Comales*%0A`;
-    mensaje += `👤 *Nombre y Mesa:* ${encodeURIComponent(nombre)}%0A`;
+    mensaje += `👤 *Nombre:* ${encodeURIComponent(nombre)}%0A`;
+    if (esDomicilio) {
+      mensaje += `🚚 *Servicio a domicilio*%0A`;
+      mensaje += `📍 *Dirección:* ${encodeURIComponent(direccion)}%0A`;
+    }
     if (notas) mensaje += `📝 *Notas:* ${encodeURIComponent(notas)}%0A`;
     mensaje += `%0A*Orden:*%0A`;
     items.forEach((item) => {
