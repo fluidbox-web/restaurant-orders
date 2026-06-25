@@ -3,6 +3,7 @@ import ProductCard from '../components/ProductCard.astro';
 import ProductModal from '../components/ProductModal.astro';
 import FloatingCart from '../components/FloatingCart.astro';
 import menuData from '../data/menu.json';
+import heroImage from '../assets/hero.jpg';
 import '../styles/global.css';
 
 const { restaurante, menu } = menuData;
@@ -42,7 +43,7 @@ const categorias = Object.entries(menu);
     <!-- Hero -->
     <section class="relative min-h-[78vh] flex items-end md:items-center overflow-hidden">
       <img
-        src="/assets/hero.jpg"
+        src={heroImage.src}
         alt={`Comida en ${restaurante.nombre}`}
         class="absolute inset-0 w-full h-full object-cover"
         loading="eager"
